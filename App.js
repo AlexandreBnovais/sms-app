@@ -8,3 +8,5 @@ import {
   Poppins_700Bold,
   useFonts
 } from '@expo-google-fonts/poppins';
+
+SplashScreen.preventAutoHideAsync();
