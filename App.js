@@ -10,3 +10,30 @@ import {
 } from '@expo-google-fonts/poppins';
 
 SplashScreen.preventAutoHideAsync();
+
+export default function RootLayout() {
+  const [loaded, error] = useEffect({ 
+    Poppins_400Regular,
+    Poppins_500Medium,
+    Poppins_700Bold,
+    useFonts
+  });
+
+  useEffect(() => {
+    if(loaded || error) {
+      SplashScreen.hideAsync();
+    }
+  }, [loaded && error]);
+
+  if(!loaded && !error) {
+    return null;
+  }
+
+  return (
+    <SafeAreaProvider>
+      <NavigationContainer>
+
+      </NavigationContainer>
+    </SafeAreaProvider>
+  );
+};
