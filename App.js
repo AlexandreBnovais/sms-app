@@ -1,5 +1,5 @@
 import react, {useEffect} from 'react';
-import { SafeAreaProvider} from 'react-native-safe-area-context';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer} from '@react-navigation/native';
 import * as SplashScreen from 'expo-splash-screen';
 import {
@@ -8,22 +8,22 @@ import {
   Poppins_700Bold,
   useFonts
 } from '@expo-google-fonts/poppins';
+import { Routes } from './src/routes/layout.js';
 
 SplashScreen.preventAutoHideAsync();
 
-export default function RootLayout() {
-  const [loaded, error] = useEffect({ 
+export default function App() {
+  const [loaded, error] = useFonts({
     Poppins_400Regular,
     Poppins_500Medium,
     Poppins_700Bold,
-    useFonts
-  });
+  })
 
   useEffect(() => {
     if(loaded || error) {
       SplashScreen.hideAsync();
     }
-  }, [loaded && error]);
+  }, [loaded, error]);
 
   if(!loaded && !error) {
     return null;
@@ -31,9 +31,9 @@ export default function RootLayout() {
 
   return (
     <SafeAreaProvider>
-      <NavigationContainer>
-
-      </NavigationContainer>
+        <NavigationContainer>
+            <Routes />
+        </NavigationContainer>
     </SafeAreaProvider>
   );
 };
